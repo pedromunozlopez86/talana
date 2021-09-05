@@ -28,35 +28,30 @@
       v-model="drawer2"
     >
       <v-list-item-title class="primary--text pt-3 pl-3">
-        Resumen de Compra
+       <h2>Resumen de Compra</h2> 
       </v-list-item-title>
-
-      <v-list-item-content> </v-list-item-content>
 
       <v-list dense>
         <v-list-item v-for="item, i in carrito" :key="item.name">
-          <v-list-item-content>
-            <v-list-item-title>
               <v-row>
+          <v-list-item-content>
                 <v-col cols="5">
                   <p class="mt-5">
-                    Nombre: {{ getProductosInfo(item.id).name }} 
+                    N: {{ getProductosInfo(item.id).name }} 
                   </p>
                   <p> Precio: ${{ getProductosInfo(item.id).price}}</p>
                 </v-col>
-
-
                 <v-col cols="2" class="">
-                  <div class="d-flex">
+                  <div class="d-flex justify-center">
                    <v-icon
+                   class="pr-3 mt-3"
                       slot="prepend"
                       color="green"
-                      @click="remove(i)"
-                    >
-                      mdi-minus
-                    </v-icon>
-                  <v-text-field class="px-16" v-text="item.cantidad"> </v-text-field>
+                      @click="remove(i)">
+                      mdi-minus</v-icon>
+                  <v-text-field class="" v-text="item.cantidad" id="canti"> </v-text-field>
                     <v-icon
+                    class="pl-3 mt-3"
                       slot="append"
                       color="red"
                       @click="add(i)"
@@ -66,17 +61,16 @@
                  </div>
                 </v-col>
 
-                <v-col cols="2" class="text-center">
-                  <p class="text-center">Sub-total: $ {{getProductosInfo(item.id).price * item.cantidad}} </p>
+                <v-col cols="5" class="text-center">
+                  <p class="text-center">Sub-total: ${{getProductosInfo(item.id).price * item.cantidad}} </p>
                 </v-col>
-              </v-row>
-            </v-list-item-title>
-            <v-list-item-title></v-list-item-title>
           </v-list-item-content>
+              </v-row>
         </v-list-item>
-              <h3 >Subtotal: {{sumaTotal}}</h3>
+              <h3 class="ml-5 mt-10 error--text" >Subtotal: {{sumaTotal}}</h3>
 
       </v-list>
+
     </v-navigation-drawer>
 
     <v-app-bar app color="deep-purple accent-4" dark>
@@ -121,7 +115,6 @@ export default {
     drawer2: false,
     group: null,
 
-    // totalItems:0,
   }),
 
   watch: {
@@ -173,16 +166,14 @@ export default {
         this.carrito[item].cantidad--;
       }
     },
-
-    // total(){
-    //   carrito.forEach(element => {
-    //     let valorUnitario=  getProductosInfo(item.id).price 
-    //     let cantidad = element.cantidad
-    //     let subtotal = valorUnitario*cantidad
-    //     subtotal += subtotal
-    //     return subtotal
-    //   });
-    // }
   },
 };
 </script>
+
+
+<style>
+  #canti{
+    width: 3rem;
+    align-content: center;
+  }
+</style>

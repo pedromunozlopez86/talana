@@ -72,7 +72,7 @@ export default {
     ...mapActions(['getProductosFromApi', "add_to_cart","getRepuestos","clear_cart","add_One_More","remove_One",]),
 
     addProduct(item){
-      alert("Agregando: " + JSON.stringify(item.name)+ this.cantidad);
+      alert("Agregando: " + JSON.stringify(item.name)+ " Cantidad: "+this.cantidad);
       let cantidad = this.cantidad
       let numId = item.id;
       const nuevoItem = { cantidad, id: numId };
