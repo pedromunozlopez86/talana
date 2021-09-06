@@ -2,7 +2,8 @@
   <v-app>
     <v-navigation-drawer app v-model="drawer" absolute bottom temporary left>
       <h3 class="pl-4 pt-10">Categorias</h3>
-      <v-list nav dense v-for="{ name, i } in categorias" :key="i">
+      <!-- <h2>{{categorias}}</h2> -->
+      <v-list nav dense v-for="{ name, i } in this.categorias" :key="i">
         <v-list-item-group
         class="pl-5"
           v-model="group"
@@ -106,7 +107,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters, mapState } from "vuex";
+import { mapActions, mapGetters, mapState, mapMutations } from "vuex";
 export default {
   name: "App",
 
@@ -135,9 +136,9 @@ export default {
       return sum
     }
   },
-  created(){
-    console.log(this.$store)
-    this.$state.getCategory();
+  mounted(){
+    this.$store.dispatch('getCategory')
+    
 
   },
 
@@ -146,15 +147,15 @@ export default {
     hola() {
       console.log(this.totalItems);
     },
-    getCategorias() {
-      axios
-        .get("http://sva.talana.com:8000/api/product-category/")
-        .then((response) => (this.categorias = response))
-        .then((categorias) => {
-          console.log(categorias);
-        });
-      return categorias;
-    },
+    // getCategorias() {
+    //   axios
+    //     .get("http://sva.talana.com:8000/api/product-category/")
+    //     .then((response) => (this.categorias = response))
+    //     .then((categorias) => {
+    //       console.log(categorias);
+    //     });
+    //   return categorias;
+    // },
 
     add(item){
       this.carrito[item].cantidad++;
